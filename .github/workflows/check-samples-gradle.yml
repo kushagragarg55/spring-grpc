@@ -41,6 +41,17 @@ jobs:
           distribution: ${{ matrix.distribution }}
           cache: gradle
 
+      - name: PROOF - resolved Boot/gRPC versions
+        run: |
+          cd samples
+          echo "requested: bootVersion=${{ matrix.bootVersion }} springGrpcVersion=${{ matrix.springGrpcVersion }}"
+          ./gradlew :grpc-server:dependencyInsight \
+            --configuration runtimeClasspath \
+            --dependency org.springframework.grpc:spring-grpc-core \
+            -PtestToolchain=${{ matrix.javaVersion }} \
+            -PbootVersion=${{ matrix.bootVersion }} \
+            -PspringGrpcVersion=${{ matrix.springGrpcVersion }}
+
       - name: Build and run samples w/ Java 25 $ {{ matrix.distribution }} (non-kotlin)
         if: ${{ matrix.javaVersion == 25 }}
         run: |

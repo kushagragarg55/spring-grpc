@@ -2,6 +2,8 @@ name: Check Samples (Gradle)
 
 on:
   workflow_dispatch:
+  push:
+    branches: [gh-300-citest]
 
 jobs:
   check_samples:

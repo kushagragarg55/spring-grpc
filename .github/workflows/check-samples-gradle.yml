@@ -6,7 +6,7 @@ on:
 jobs:
   check_samples:
     name: Check Samples project
-    if: ${{ github.repository == 'spring-projects/spring-grpc' }}
+    if: ${{ github.repository == 'kushagragarg55/spring-grpc' }}
     strategy:
       fail-fast: false
       matrix:
